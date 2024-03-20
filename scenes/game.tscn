@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://do4s8un85m8xr"]
+[gd_scene load_steps=16 format=3 uid="uid://do4s8un85m8xr"]
 
 [ext_resource type="Texture2D" uid="uid://gnqjsmqcjhcw" path="res://assets/tiles/survivalgame-terrian-defult.png" id="1_hiq2a"]
 [ext_resource type="PackedScene" uid="uid://hiugtne87qbp" path="res://scenes/player.tscn" id="1_om45d"]
 [ext_resource type="Texture2D" uid="uid://ca3f85le51ulh" path="res://assets/tiles/survivalgame-terrian-cliffs.png" id="2_vgkib"]
 [ext_resource type="Texture2D" uid="uid://d4moyyafwcsxq" path="res://assets/tiles/survivalgame-trees.png" id="3_3sh53"]
 [ext_resource type="Texture2D" uid="uid://bignr3f3ktj3s" path="res://assets/tiles/survivalgame-terrian-water.png" id="4_48lye"]
+[ext_resource type="PackedScene" uid="uid://ccmv3xqv4v3i1" path="res://scenes/npc.tscn" id="5_6bafj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6g0s"]
 texture = ExtResource("1_hiq2a")
@@ -873,5 +874,10 @@ shape = SubResource("WorldBoundaryShape2D_n7x8e")
 
 [node name="EastBoundary" type="CollisionShape2D" parent="World/Borders"]
 shape = SubResource("WorldBoundaryShape2D_vmqky")
+
+[node name="NPCs" type="Node2D" parent="World"]
+
+[node name="NPC" parent="World/NPCs" instance=ExtResource("5_6bafj")]
+position = Vector2(-96, 12)
 
 [node name="Player" parent="." instance=ExtResource("1_om45d")]
