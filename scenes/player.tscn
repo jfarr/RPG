@@ -335,3 +335,7 @@ shape = SubResource("CircleShape2D_wndaf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
+limit_left = -640
+limit_top = -280
+limit_right = 360
+limit_bottom = 200
