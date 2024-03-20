@@ -1,37 +1,46 @@
 class_name Player
 extends CharacterBody2D
 
-enum State {
-	IDLE,
-	WALKING
-}
-
 const speed : int = 100
 
 @onready var camera = $Camera2D
 @onready var sprite = $AnimatedSprite2D
 
-var state : State = State.IDLE;
+enum {
+	IDLE,
+	WALK
+}
 
-func _physics_process(_delta):
-	var direction = Input.get_vector("left", "right", "up", "down")
+class PlayerState extends State:
+	var player : Player
 
-	velocity = direction * speed
-	move_and_slide()
-	
-	play_animation(direction)
+	func _init(_player : Player):
+		player = _player
 
-func play_animation(direction : Vector2):
-	state = (
-		State.IDLE 
-		if (direction.x == 0 and direction.y == 0)
-		 else State.WALKING
-		)
+class IdleState extends PlayerState:
 
-	if state == State.IDLE:
-		sprite.play("idle")
-	else:
-		#var animation = "attack" if bow_equipped else "walk"
+	func enter():
+		play_animation()
+
+	func physics_update(delta : float):
+		var direction = Input.get_vector("left", "right", "up", "down")
+		if (direction.x != 0 or direction.y != 0):
+			player.transition_state(WALK)
+
+	func play_animation():
+		player.sprite.play("idle")
+
+class WalkState extends PlayerState:
+	func physics_update(delta : float):
+		var direction = Input.get_vector("left", "right", "up", "down")
+		if (direction.x == 0 and direction.y == 0):
+			player.transition_state(IDLE)
+		else:
+			player.velocity = direction * speed
+			player.move_and_slide()
+			play_animation(direction)
+
+	func play_animation(direction : Vector2):
 		var animation = "walk"
 		var animation_dir = "s"
 		if direction.x > 0:
@@ -53,4 +62,21 @@ func play_animation(direction : Vector2):
 		elif direction.y < 0:
 			animation_dir = "n"
 
-		sprite.play(animation + "-" + animation_dir)
+		player.sprite.play(animation + "-" + animation_dir)
+
+@onready var states = {
+	IDLE: IdleState.new(self),
+	WALK: WalkState.new(self),
+}
+
+var state : State
+
+func _ready():
+	transition_state(IDLE)
+
+func transition_state(next_state : int):
+	state = states[next_state]
+	state.enter()
+
+func _physics_process(delta : float):
+	state.physics_update(delta)

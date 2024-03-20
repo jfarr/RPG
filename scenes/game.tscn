@@ -874,7 +874,4 @@ shape = SubResource("WorldBoundaryShape2D_n7x8e")
 [node name="EastBoundary" type="CollisionShape2D" parent="World/Borders"]
 shape = SubResource("WorldBoundaryShape2D_vmqky")
 
-[node name="Marker2D" type="Marker2D" parent="World"]
-position = Vector2(-642, 201)
-
 [node name="Player" parent="." instance=ExtResource("1_om45d")]
