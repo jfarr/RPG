@@ -1,4 +1,4 @@
-class_name State
+class_name State extends Object
 
 func enter():
 	pass

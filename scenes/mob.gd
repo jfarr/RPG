@@ -10,12 +10,15 @@ enum State {
 
 @export var sprite : AnimatedSprite2D
 @export var walk_speed = 30
+@export var max_distance = 120
 
 var state = State.IDLE
 var direction = Vector2.RIGHT
+var starting_pos : Vector2
 
 func _ready():
 	randomize()
+	starting_pos = character.position
 
 func _physics_process(delta : float):
 	match state:
@@ -27,11 +30,13 @@ func _physics_process(delta : float):
 		State.MOVE:
 			move(walk_speed)
 			play_animation()
-			#var distance = ((position + direction * walk_speed) - starting_pos).length()
-			#if distance < max_distance:
-				#move(walk_speed)
-			#else:
-				#current_state = State.NEW_DIR
+			var distance = ((character.position + direction * walk_speed) - starting_pos).length()
+			print("distance: %s" % distance)
+			if distance < max_distance:
+				move(walk_speed)
+			else:
+				state = State.NEW_DIR
+				$Timer.wait_time = 0.5
 
 func choose(choices):
 	choices.shuffle()
