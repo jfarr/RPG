@@ -841,8 +841,10 @@ normal = Vector2(-1, 0)
 distance = -360.0
 
 [node name="Game" type="Node2D"]
+y_sort_enabled = true
 
 [node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="TileMap" type="TileMap" parent="World"]
 y_sort_enabled = true
