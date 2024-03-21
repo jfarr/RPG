@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/mob.gd" id="1_t6xfy"]
 [ext_resource type="Texture2D" uid="uid://ds6en7u2b1h53" path="res://assets/character/Human-Worker-Red.png" id="2_f6rr7"]
-[ext_resource type="PackedScene" uid="uid://cd8vqv47fuao" path="res://scenes/npc_chat.tscn" id="3_3ixir"]
+[ext_resource type="PackedScene" uid="uid://cd8vqv47fuao" path="res://scenes/npc_dialog.tscn" id="3_3ixir"]
 [ext_resource type="Script" path="res://scripts/dialog_script.gd" id="4_ftrsx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asejx"]
@@ -166,11 +166,11 @@ radius = 5.0
 script = ExtResource("4_ftrsx")
 dialog_file = "res://assets/dialog/worker_dialog1.json"
 
-[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "chat_dialog")]
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "dialog")]
 motion_mode = 1
 script = ExtResource("1_t6xfy")
 sprite = NodePath("AnimatedSprite2D")
-chat_dialog = NodePath("NPChat")
+dialog = NodePath("NPCDialog")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l67o8")
@@ -180,5 +180,5 @@ animation = &"idle"
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_gcyyd")
 
-[node name="NPChat" parent="." instance=ExtResource("3_3ixir")]
+[node name="NPCDialog" parent="." instance=ExtResource("3_3ixir")]
 dialog_script = SubResource("Resource_nxgjs")

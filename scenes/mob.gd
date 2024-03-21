@@ -102,7 +102,7 @@ func transition_state(next_state : int):
 @export var max_distance = 120
 @export var hostile = false
 @export var detection_area : Area2D
-@export var chat_dialog : NPCChat
+@export var dialog : NPCDialog
 
 var state : MOBState
 var direction = Vector2.RIGHT
@@ -117,9 +117,9 @@ func _ready():
 	if detection_area != null:
 		detection_area.body_entered.connect(_on_detection_area_body_entered)
 		detection_area.body_exited.connect(_on_detection_area_body_exited)
-	if chat_dialog != null:
-		chat_dialog.dialog_started.connect(_on_dialog_started)
-		chat_dialog.dialog_finished.connect(_on_dialog_finished)
+	if dialog != null:
+		dialog.dialog_started.connect(_on_dialog_started)
+		dialog.dialog_finished.connect(_on_dialog_finished)
 
 	transition_state(IDLE)
 

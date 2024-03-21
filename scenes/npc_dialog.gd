@@ -1,4 +1,4 @@
-class_name NPCChat
+class_name NPCDialog
 extends Node2D
 
 signal dialog_started

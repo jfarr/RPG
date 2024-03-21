@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cd8vqv47fuao"]
 
-[ext_resource type="Script" path="res://scenes/npc_chat.gd" id="1_o8ebc"]
+[ext_resource type="Script" path="res://scenes/npc_dialog.gd" id="1_o8ebc"]
 [ext_resource type="PackedScene" uid="uid://bdu4k02d8wnqa" path="res://scenes/dialog.tscn" id="1_x533p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osy14"]
