@@ -160,7 +160,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_gcyyd"]
 radius = 5.0
 
-[node name="NPC2" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+[node name="NPC" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+motion_mode = 1
 script = ExtResource("1_t6xfy")
 sprite = NodePath("AnimatedSprite2D")
 
