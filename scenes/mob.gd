@@ -5,6 +5,7 @@ enum {
 	NEW_DIR,
 	MOVE,
 	CHASE,
+	DIALOG,
 }
 
 class MOBState extends State:
@@ -15,13 +16,11 @@ class MOBState extends State:
 		mob = _mob
 
 class IdleState extends MOBState:
-	var name = "idle"
 	
 	func enter():
 		mob.sprite.play("idle")
 
 class MoveState extends MOBState:
-	var name = "move"
 
 	var speed : int
 
@@ -50,14 +49,12 @@ class MoveState extends MOBState:
 			mob.sprite.play("move-s")
 
 class NewDirectionState extends MOBState:
-	var name = "new_direction"
-	
+
 	func enter():
 		mob.direction = mob.choose([Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN])
-		mob.sprite.play("idle")
+		mob.transition_state(MOVE)
 
 class ChaseState extends MOBState:
-	var name = "chase"
 
 	var speed : int
 
@@ -80,14 +77,26 @@ class ChaseState extends MOBState:
 		elif mob.direction.y > 0:
 			mob.sprite.play("run-s")
 
+class DialogState extends MOBState:
+
+	func enter():
+		mob.sprite.play("idle")
+		mob.player.set_process_input(false)
+
+	func exit():
+		mob.player.set_process_input(true)
+
 @onready var states : Array[MOBState] = [
 	IdleState.new(self),
 	NewDirectionState.new(self),
 	MoveState.new(self),
-	ChaseState.new(self)
+	ChaseState.new(self),
+	DialogState.new(self),
 ]
 
 func transition_state(next_state : int):
+	if state:
+		state.exit()
 	state = states[next_state]
 	state.enter()
 
@@ -97,6 +106,7 @@ func transition_state(next_state : int):
 @export var max_distance = 120
 @export var hostile = false
 @export var detection_area : Area2D
+@export var dialog : NPCDialog
 
 var state : MOBState
 var direction = Vector2.RIGHT
@@ -111,6 +121,9 @@ func _ready():
 	if detection_area != null:
 		detection_area.body_entered.connect(_on_detection_area_body_entered)
 		detection_area.body_exited.connect(_on_detection_area_body_exited)
+	if dialog != null:
+		dialog.dialog_started.connect(_on_dialog_started)
+		dialog.dialog_finished.connect(_on_dialog_finished)
 
 	transition_state(IDLE)
 
@@ -146,3 +159,9 @@ func _on_detection_area_body_exited(body : Player):
 	if body != null:
 		player = null
 		transition_state(NEW_DIR)
+
+func _on_dialog_started():
+	transition_state(DIALOG)
+
+func _on_dialog_finished():
+	transition_state(NEW_DIR)

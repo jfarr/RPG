@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 const speed : int = 100
 
-@onready var camera = $Camera2D
 @onready var sprite = $AnimatedSprite2D
 
 enum {
