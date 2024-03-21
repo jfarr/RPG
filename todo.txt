@@ -1,0 +1,21 @@
+- collectibles
+	- sticks
+	- apple trees
+- inventory UI
+- ranged attacks
+- dropped items
+	- slimes
+- respawn
+	- items
+	- mobs
+- quests
+	- quest resources
+	- quest givers
+	- HUD
+- scene manager
+	- second scene
+	- transitions
+
+- hitboxes / weapon damage
+- mob navigation
+- loot tables
