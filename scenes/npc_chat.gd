@@ -1,15 +1,30 @@
+class_name NPCChat
 extends Node2D
 
-@export_file("*.json") var dialog_file
+signal dialog_started
+signal dialog_finished
 
-var player_in_chat_area = false
+@export var dialog_script : DialogScript = null
 
-func process(_delta):
-	if player_in_chat_area and Input.is_action_just_pressed("ui_use"):
-		$Dialog.start(dialog_file)
+@onready var dialog : Dialog = $Dialog
 
-func _on_chat_area_body_entered(_body):
-	player_in_chat_area = true
+@onready var player : Player = null
 
-func _on_chat_area_body_exited(_body):
-	player_in_chat_area = false
+func _process(delta):
+	if dialog_script and player and Input.is_action_just_pressed("use"):
+		dialog.start(dialog_script.get_messages())
+
+func _on_chat_area_body_entered(body : Player):
+	if dialog_script != null and body != null:
+		player = body
+
+func _on_chat_area_body_exited(body : Player):
+	if dialog_script != null and body != null:
+		player = null
+		dialog.close()
+
+func _on_dialog_dialog_started():
+	dialog_started.emit()
+
+func _on_dialog_dialog_finished():
+	dialog_finished.emit()

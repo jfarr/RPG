@@ -21,8 +21,11 @@ func start(_dialog):
 	next_script()
 
 func _input(event):
-	if is_active and event.is_action_pressed("ui_accept"):
-		next_script()
+	if is_active:
+		if event.is_action_pressed("accept"):
+			next_script()
+		elif event.is_action_pressed("cancel"):
+			close()
 
 func next_script():
 	current_dialog_idx += 1
@@ -30,7 +33,10 @@ func next_script():
 		$NinePatchRect/Name.text = dialog[current_dialog_idx]["name"]
 		$NinePatchRect/Text.text = dialog[current_dialog_idx]["text"]	
 	else:
-		is_active = false
-		current_dialog_idx = -1
-		$NinePatchRect.visible = false
-		dialog_finished.emit()
+		close()
+
+func close():
+	is_active = false
+	current_dialog_idx = -1
+	$NinePatchRect.visible = false
+	dialog_finished.emit()

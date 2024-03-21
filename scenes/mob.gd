@@ -81,10 +81,6 @@ class DialogState extends MOBState:
 
 	func enter():
 		mob.sprite.play("idle")
-		mob.player.set_process_input(false)
-
-	func exit():
-		mob.player.set_process_input(true)
 
 @onready var states : Array[MOBState] = [
 	IdleState.new(self),
@@ -106,7 +102,7 @@ func transition_state(next_state : int):
 @export var max_distance = 120
 @export var hostile = false
 @export var detection_area : Area2D
-@export var dialog : NPCDialog
+@export var chat_dialog : NPCChat
 
 var state : MOBState
 var direction = Vector2.RIGHT
@@ -121,9 +117,9 @@ func _ready():
 	if detection_area != null:
 		detection_area.body_entered.connect(_on_detection_area_body_entered)
 		detection_area.body_exited.connect(_on_detection_area_body_exited)
-	if dialog != null:
-		dialog.dialog_started.connect(_on_dialog_started)
-		dialog.dialog_finished.connect(_on_dialog_finished)
+	if chat_dialog != null:
+		chat_dialog.dialog_started.connect(_on_dialog_started)
+		chat_dialog.dialog_finished.connect(_on_dialog_finished)
 
 	transition_state(IDLE)
 
@@ -145,7 +141,7 @@ func move(speed):
 	move_and_slide()
 
 func _on_timer_timeout():
-	if player == null:
+	if state in [states[IDLE], states[NEW_DIR], states[MOVE]]:
 		move_timer.wait_time = choose([0.5, 1.0, 1.5])
 		var new_state = choose([IDLE, NEW_DIR, MOVE])
 		transition_state(new_state)
