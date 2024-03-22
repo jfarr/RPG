@@ -24,6 +24,5 @@ func spawn_item():
 
 func on_item_collected(object):
 	if wait_time > 0 and object == spawned:
-		print("collected")
 		timer.wait_time = wait_time
 		timer.start()

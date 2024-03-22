@@ -13,15 +13,17 @@ func insert(item : InventoryItem):
 		if !empty_slots.is_empty():
 			empty_slots[0].item = item
 			empty_slots[0].amount = 1
+		else:
+			var slot = InventorySlot.new()
+			slot.item = item
+			slot.amount = 1
+			slots.append(slot)
 	update.emit()
 
 func count_items(item : InventoryItem):
-	#var current_count = 0
 	var item_slots = slots.filter(func(slot): return slot.item == item)
 	return item_slots.map(func(item): return item.amount).reduce(func(a, b): return a + b, 0)
-	#for slot in item_slots:
-		#current_count += slot.amount
-	#return current_count
+
 
 func remove_items(item : InventoryItem, count : int = 1):
 	var item_slots = slots.filter(func(slot): return slot.item == item)

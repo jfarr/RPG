@@ -1,5 +1,5 @@
 - collectibles
-	- sticks
+	x sticks
 	- apple trees
 - inventory UI
 - ranged attacks

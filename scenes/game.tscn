@@ -901,3 +901,4 @@ position = Vector2(135, -37)
 position = Vector2(147, 81)
 
 [node name="Player" parent="." instance=ExtResource("1_om45d")]
+unique_name_in_owner = true
