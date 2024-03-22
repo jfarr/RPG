@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://du2v65dd68niq"]
 
-[ext_resource type="Script" path="res://scripts/lootable.gd" id="1_55i6b"]
+[ext_resource type="Script" path="res://scripts/item_spawn.gd" id="1_55i6b"]
 [ext_resource type="PackedScene" uid="uid://bhpgsb7hyoevb" path="res://inventory/scenes/stick_collectible.tscn" id="2_02h1o"]
 
 [node name="StickSpawn" type="Node2D"]
