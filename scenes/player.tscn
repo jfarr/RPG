@@ -241,7 +241,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-e",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -252,7 +252,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-n",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -263,7 +263,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-ne",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -274,7 +274,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-nw",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -285,7 +285,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-s",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -296,7 +296,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-se",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -307,7 +307,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-sw",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -318,7 +318,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-w",
-"speed": 2.0
+"speed": 3.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wndaf"]
@@ -343,6 +343,7 @@ limit_right = 360
 limit_bottom = 200
 
 [node name="InventoryUI" parent="." instance=ExtResource("3_g2art")]
+visible = false
 offset_left = -42.0
 offset_top = -76.0
 offset_right = 42.0

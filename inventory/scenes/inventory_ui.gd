@@ -19,3 +19,5 @@ func update_slots():
 func _process(_delta):
 	if Input.is_action_just_pressed("inventory"):
 		visible = not visible
+	elif visible and Input.is_action_just_pressed("cancel"):
+		visible = false
