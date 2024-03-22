@@ -69,6 +69,7 @@ class WalkState extends PlayerState:
 }
 
 var state : State
+var inventory : Inventory = Inventory.new()
 
 func _ready():
 	transition_state(IDLE)
@@ -79,3 +80,6 @@ func transition_state(next_state : int):
 
 func _physics_process(delta : float):
 	state.physics_update(delta)
+
+func collect_item(item : InventoryItem):
+	inventory.insert(item)

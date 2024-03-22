@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgw3cm283re8o"]
+
+[ext_resource type="Script" path="res://scripts/collectible.gd" id="1_ba1pf"]
+[ext_resource type="Resource" uid="uid://d24xicv10dhc5" path="res://inventory/items/apple.tres" id="2_2o76x"]
+[ext_resource type="Texture2D" uid="uid://c2gstusuc36km" path="res://assets/sprites/apple-icon.png" id="3_dyqmi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ypmoa"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlvyw"]
+radius = 3.16228
+
+[node name="AppleCollectible" type="StaticBody2D" node_paths=PackedStringArray("sprite", "collection_area")]
+script = ExtResource("1_ba1pf")
+item = ExtResource("2_2o76x")
+sprite = NodePath("Sprite2D")
+collection_area = NodePath("CollectibleArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_dyqmi")
+
+[node name="CollectibleArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleArea"]
+shape = SubResource("CircleShape2D_ypmoa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vlvyw")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhpgsb7hyoevb"]
+
+[ext_resource type="Script" path="res://scripts/collectible.gd" id="1_arspu"]
+[ext_resource type="Resource" uid="uid://b4kdjit6huofg" path="res://inventory/items/stick.tres" id="2_krutq"]
+[ext_resource type="Texture2D" uid="uid://b3gknad2le8g6" path="res://assets/sprites/stick-icon.png" id="3_3usub"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v0ffk"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dp7qh"]
+radius = 8.0
+
+[node name="StickCollectible" type="StaticBody2D" node_paths=PackedStringArray("sprite", "collection_area")]
+script = ExtResource("1_arspu")
+item = ExtResource("2_krutq")
+sprite = NodePath("Sprite2D")
+collection_area = NodePath("CollectionArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_3usub")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_v0ffk")
+
+[node name="CollectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
+shape = SubResource("CircleShape2D_dp7qh")

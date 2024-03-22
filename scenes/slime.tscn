@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://bvxgj21hgy67h"]
 
-[ext_resource type="Script" path="res://scenes/mob.gd" id="1_1p7va"]
+[ext_resource type="Script" path="res://scripts/mob.gd" id="1_1p7va"]
 [ext_resource type="Texture2D" uid="uid://enqdtn5vumfx" path="res://assets/character/survivalgame-enemy-slime.png" id="2_4au85"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tovt"]

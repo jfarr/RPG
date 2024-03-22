@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://do4s8un85m8xr"]
+[gd_scene load_steps=20 format=3 uid="uid://do4s8un85m8xr"]
 
 [ext_resource type="Texture2D" uid="uid://yfehgwvtjhq0" path="res://assets/tiles/survivalgame-terrian-defult.png" id="1_hiq2a"]
 [ext_resource type="PackedScene" uid="uid://hiugtne87qbp" path="res://scenes/player.tscn" id="1_om45d"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://wyey0ygytlb3" path="res://assets/tiles/survivalgame-terrian-water.png" id="4_48lye"]
 [ext_resource type="PackedScene" uid="uid://bvxgj21hgy67h" path="res://scenes/slime.tscn" id="6_hr1w4"]
 [ext_resource type="PackedScene" uid="uid://cs4fj18n54y28" path="res://scenes/npc.tscn" id="6_uhu7m"]
+[ext_resource type="PackedScene" uid="uid://bhpgsb7hyoevb" path="res://inventory/scenes/stick_collectible.tscn" id="7_e5un6"]
+[ext_resource type="PackedScene" uid="uid://dgw3cm283re8o" path="res://inventory/scenes/apple_collectible.tscn" id="8_rmo64"]
+[ext_resource type="PackedScene" uid="uid://du2v65dd68niq" path="res://scenes/stick_spawn.tscn" id="9_kswag"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p6g0s"]
 texture = ExtResource("1_hiq2a")
@@ -885,5 +888,16 @@ position = Vector2(-92, -2)
 
 [node name="Slime" parent="World/Enemies" instance=ExtResource("6_hr1w4")]
 position = Vector2(248, -156)
+
+[node name="Collectibles" type="Node2D" parent="World"]
+
+[node name="StickCollectible" parent="World/Collectibles" instance=ExtResource("7_e5un6")]
+position = Vector2(-7, 73)
+
+[node name="AppleCollectible" parent="World/Collectibles" instance=ExtResource("8_rmo64")]
+position = Vector2(135, -37)
+
+[node name="StickSpawn" parent="World/Collectibles" instance=ExtResource("9_kswag")]
+position = Vector2(147, 81)
 
 [node name="Player" parent="." instance=ExtResource("1_om45d")]
